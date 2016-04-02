@@ -2,7 +2,7 @@ package project3;
 
 /**
  * Created by Mike Plucker
- * Date: 3/8/2016
+ * Date: 4/1/2016
  * Class: CSCI 1933-12
  */
 public interface MyList {
