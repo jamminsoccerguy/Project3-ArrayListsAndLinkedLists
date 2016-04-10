@@ -243,4 +243,125 @@ public class MyArrayListTest {
 
         assertEquals(4, al.size());
     }
+
+
+    @Test
+    public void testAddNull() {
+        MyList list = new MyArrayList();
+        assertEquals(false,list.add(null));
+    }
+
+    @Test
+    public void testAddGrowOnce() {
+        MyList list = new MyArrayList();
+        Puppy alice = new Puppy("Alice",5);
+        Puppy batman = new Puppy("Batman",10);
+        Puppy carlos = new Puppy("Carlos",15);
+        assertTrue(list.add(alice));
+        assertTrue(list.add(batman));
+        assertTrue(list.add(carlos));
+    }
+
+    @Test
+    public void testInsertMid() {
+        MyList list = new MyArrayList();
+        Puppy alice = new Puppy("Alice",5);
+        Puppy batman = new Puppy("Batman",10);
+        Puppy carlos = new Puppy("Carlos",15);
+        Puppy draco = new Puppy("Draco",20);
+        list.add(alice);
+        list.add(batman);
+        list.add(carlos);
+        assertTrue(list.insert(2, draco));
+    }
+
+    @Test
+    public void testClear() {
+        MyList list = new MyArrayList();
+        int rand = (int)(Math.random()*100)+20;
+        for(int i = 0; i < rand; i++){
+            list.add(new Puppy("p"+i,i));
+        }
+        list.clear();
+        assertEquals(0,list.size());
+    }
+
+    @Test
+    public void testContains() {
+        MyList list = new MyArrayList();
+        Puppy alice = new Puppy("Alice",5);
+        Puppy batman = new Puppy("Batman",10);
+        Puppy carlos = new Puppy("Carlos",15);
+        list.add(alice);
+        list.add(batman);
+        list.add(carlos);
+        assertTrue(list.contains(new Puppy(alice)));
+        assertTrue(list.contains(new Puppy(batman)));
+        assertTrue(list.contains(new Puppy(carlos)));
+    }
+
+    @Test
+    public void testGet() {
+        MyList list = new MyArrayList();
+        Puppy p = new Puppy("Mal",10);
+        list.add(p);
+        assertNotNull(list.get(0));
+        assertTrue((new Puppy(p)).equals(list.get(0)));
+    }
+
+    @Test
+    public void testIndexOf() {
+        MyList list = new MyArrayList();
+        int rand = (int)(Math.random()*100)+20;
+        Puppy[] puppyMill = new Puppy[rand];
+        for(int i = 0; i < puppyMill.length; i++){
+            puppyMill[i] = new Puppy("p"+i,i);
+            list.add(new Puppy("p"+i,i));
+        }
+        int r = (int)(Math.random()*rand);
+        assertEquals(r,list.indexOf(puppyMill[r]));
+    }
+
+    @Test
+    public void testIsNotEmpty() {
+        MyList list = new MyArrayList();
+        list.add(new Puppy("pup",12));
+        assertFalse(list.isEmpty());
+    }
+
+    @Test
+    public void testRemoveIntEmpty() {
+        MyList list = new MyArrayList();
+        assertNull(list.remove(0));
+    }
+
+    @Test
+    public void testRemoveObjectEmpty() {
+        MyList list = new MyArrayList();
+        Puppy p = new Puppy("Jayne",9001);
+        assertFalse(list.remove(p));
+    }
+
+    @Test
+    public void testSetSuccess() {
+        MyList list = new MyArrayList();
+        Puppy p = new Puppy("Jayne",9001);
+        list.add(p);
+        Puppy p3 = new Puppy("Kaylee",1337);
+        Puppy p2 = (Puppy)list.get(0);
+        list.set(0,p3);
+        assertEquals(p3,list.get(0));
+        assertNotEquals(p2,list.get(0));
+    }
+
+    @Test
+    public void testSizeAddAndClear() {
+        MyList list = new MyArrayList();
+        int rand = (int)(Math.random()*100)+20;
+        for(int i = 0; i < rand; i++){
+            list.add(new Puppy("p"+i,i));
+        }
+        list.clear();
+        assertEquals(0,list.size());
+    }
 }
